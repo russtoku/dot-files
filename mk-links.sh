@@ -9,3 +9,6 @@ ln -sf "$HOME"/dot-files/dot.bash_profile "$HOME"/.bash_profile
 
 echo "symlinking $HOME/.config/kitty"
 ln -sf "$HOME"/dot-files/kitty "$HOME"/.config/kitty
+
+echo "symlinking $HOME/.config/nvim"
+ln -sf /Users/russ/dot-files/magic-kit /Users/russ/.config/nvim

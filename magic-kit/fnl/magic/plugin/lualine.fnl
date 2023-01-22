@@ -2,4 +2,7 @@
 
 (let [(ok? lualine) (pcall require :lualine)]
   (when ok?
-    (lualine.setup)))
+    (lualine.setup
+        {:options {:theme "dracula"
+                   :icons_enabled false }})))
+

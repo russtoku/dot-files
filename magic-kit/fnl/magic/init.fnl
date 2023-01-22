@@ -1,5 +1,9 @@
 (module magic.init
   {autoload {plugin magic.plugin
+             my_mappings magic.mapping
+             my_options magic.options
+             my_ftypes magic.file-types
+             my_colors magic.colors
              nvim aniseed.nvim}})
 
 ;;; Introduction
@@ -18,21 +22,29 @@
 ;;; Generic configuration
 
 (set nvim.o.termguicolors true)
-(set nvim.o.mouse "a")
-(set nvim.o.updatetime 500)
-(set nvim.o.timeoutlen 500)
+(set nvim.o.mouse "") ;; use mouse with macos' Cmd-c
+(set nvim.o.updatetime 2000) ;; default 4000
+(set nvim.o.timeoutlen 900)  ;; default 1000
 (set nvim.o.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
 (set nvim.o.inccommand :split)
 
-(nvim.ex.set :spell)
-(nvim.ex.set :list)
 
+;; Disable some providers because we don't want to use them.
+(set nvim.g.loaded_node_provider 0)
+(set nvim.g.loaded_perl_provider 0)
+(set nvim.g.loaded_ruby_provider 0)
+(set nvim.g.loaded_python3_provider 0)
 
 ;;; Mappings
 
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
+;;; My customizations
+(my_mappings.setup)
+(my_options.setup)
+(my_ftypes.setup)
+(my_colors.setup) 
 
 ;;; Plugins
 
@@ -40,41 +52,38 @@
 ;; Packer configuration format: https://github.com/wbthomason/packer.nvim
 (plugin.use
   :Olical/aniseed {}
-  :Olical/conjure {}
-  :Olical/nvim-local-fennel {}
-  :PaterJason/cmp-conjure {}
-  :PeterRincker/vim-argumentative {}
-  :airblade/vim-gitgutter {}
+  ;;:Olical/conjure {}
+  :/Users/russ/Projects/Conjure/conjure {}
+  ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO
   :clojure-vim/clojure.vim {}
-  :clojure-vim/vim-jack-in {}
-  :folke/which-key.nvim {:mod :which-key}
-  :ggandor/lightspeed.nvim {}
   :guns/vim-sexp {:mod :sexp}
-  :hrsh7th/cmp-buffer {}
-  :hrsh7th/cmp-cmdline {}
-  :hrsh7th/cmp-nvim-lsp {}
-  :hrsh7th/cmp-path {}
-  :hrsh7th/nvim-cmp {:mod :cmp}
-  :jiangmiao/auto-pairs {:mod :auto-pairs}
+  :kylechui/nvim-surround {:mod :surround}  ;; instead of tpop/vim-surround
+  :lewis6991/gitsigns.nvim {:mod :gitsigns} ;; instead of vim-gitgutter
   :lewis6991/impatient.nvim {}
-  :liuchengxu/vim-better-default {:mod :better-default}
-  :marko-cerovac/material.nvim {:mod :material}
-  :mbbill/undotree {:mod :undotree}
-  :neovim/nvim-lspconfig {:mod :lspconfig}
-  :nvim-lualine/lualine.nvim {:mod :lualine}
-  :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
-  :radenling/vim-dispatch-neovim {}
-  :tpope/vim-abolish {}
-  :tpope/vim-commentary {}
-  :tpope/vim-dispatch {}
-  :tpope/vim-eunuch {}
-  :tpope/vim-fugitive {}
-  :tpope/vim-repeat {}
+  :nvim-lualine/lualine.nvim {:requires [:kyazdani42/nvim-web-devicons] :mod :lualine}
+  :nvim-treesitter/nvim-treesitter {:mod :treesitter}
+  :terrortylor/nvim-comment {} ;; like tpope/vim-commentary
   :tpope/vim-sexp-mappings-for-regular-people {}
-  :tpope/vim-sleuth {}
-  :tpope/vim-surround {}
-  :tpope/vim-unimpaired {}
+  ;;:tpope/vim-surround {} ;; NO
   :tpope/vim-vinegar {}
-  :w0rp/ale {:mod :ale}
   :wbthomason/packer.nvim {}
+  :andymass/vim-matchup {}
+
+  ;; Color schemes
+  :Mofiqul/dracula.nvim {}
+  :bluz71/vim-moonfly-colors {}
+  :bluz71/vim-nightfly-colors {}
+  :folke/tokyonight.nvim {}
+  ;;:jacoborus/tender.vim {} ;; NO
+  :marko-cerovac/material.nvim {} ;; {:mod :material}
   )
+
+;; Select the color scheme
+;;   Should load plugin/<colorscheme_name>.fnl instead to select & customize
+(nvim.ex.colorscheme :nightfly)
+;; (nvim.ex.colorscheme :moonfly)  ;; a bit lighter than nightfly
+;; (nvim.ex.colorscheme :material) ;; should load the plugin/material.fnl instead
+;; (nvim.ex.colorscheme :tokyonight-night) ;; a bit faded, must turn up brightness
+;; (nvim.ex.colorscheme :dracula) ;; comments are too faded, must turn up brightness
+;; (nvim.ex.colorscheme :tender) ;; faded like dracula
+
