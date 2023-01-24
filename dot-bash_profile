@@ -16,9 +16,10 @@ alias top='top -l 1 -n 20 -ncols 12'
 ##alias vi='mvim --remote-silent'
 ##alias vim='mvim --remote-silent'
 ##alias view='mvim -R --remote-silent'
-alias vi='echo use nvim on '
-alias vim='echo use nvim on '
+alias vi='echo use nvim'
+alias vim='echo use nvim'
 alias view='nvim -R'
+alias cat=bat
 
 ## 02/08/22; Switch to tmux2; start: "tmux new -A -s repl"
 ## 11/19/21; Started to use screen to run MIT Scheme with vim-slime. This is
@@ -149,7 +150,7 @@ st() {
 
 #  Used in bash prompt
 #  - https://danishpraka.sh/2018/07/06/git-branch-zsh.html
-function git_branch() {
+git_branch() {
     branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
     if [[ $branch == "" ]]; then
         :
@@ -202,4 +203,3 @@ unset __conda_setup
 # 02/01/22: Manage Node versions and friends; instead of nodenv.
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-
