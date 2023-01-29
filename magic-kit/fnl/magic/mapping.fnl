@@ -22,4 +22,14 @@
   ;; -> n  Q           * <Nop>
   (util.nnoremap :Q "")
 
+  ;; " RT: invoke TSNodeUnderCursor
+  ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
+  ;; -> n  Q           * <Nop>
+  (util.nnoremap :<LocalLeader>tn "TSNodeUnderCursor")
+
+  ;; " RT: invoke TSPlaygroundToggle
+  ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
+  ;; -> n  Q           * <Nop>
+  (util.nnoremap :<LocalLeaderntp "TSPlaygroundToggle")
+
 )

@@ -23,8 +23,8 @@
 
 (set nvim.o.termguicolors true)
 (set nvim.o.mouse "") ;; use mouse with macos' Cmd-c
-(set nvim.o.updatetime 2000) ;; default 4000
-(set nvim.o.timeoutlen 900)  ;; default 1000
+(set nvim.o.updatetime 3000) ;; default 4000
+(set nvim.o.timeoutlen 1000)  ;; default 1000
 (set nvim.o.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
 (set nvim.o.inccommand :split)
 
@@ -62,6 +62,7 @@
   :lewis6991/impatient.nvim {}
   :nvim-lualine/lualine.nvim {:requires [:kyazdani42/nvim-web-devicons] :mod :lualine}
   :nvim-treesitter/nvim-treesitter {:mod :treesitter}
+  :nvim-treesitter/playground {:mod :playground}
   :terrortylor/nvim-comment {} ;; like tpope/vim-commentary
   :tpope/vim-sexp-mappings-for-regular-people {}
   ;;:tpope/vim-surround {} ;; NO
