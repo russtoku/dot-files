@@ -19,4 +19,4 @@
                              :show_help "?"}
                }})
 
-(print "magic.plugin.playground loaded")
+;;(print "magic.plugin.playground loaded")
