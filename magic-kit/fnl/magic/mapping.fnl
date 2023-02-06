@@ -30,6 +30,6 @@
   ;; " RT: invoke TSPlaygroundToggle
   ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
   ;; -> n  Q           * <Nop>
-  (util.nnoremap :<LocalLeaderntp "TSPlaygroundToggle")
+  (util.nnoremap :<LocalLeader>tp "TSPlaygroundToggle")
 
 )

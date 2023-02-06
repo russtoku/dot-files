@@ -2,7 +2,7 @@
   {autoload {plugin magic.plugin}})
 
 (plugin.use
-  ;;   Stuff to enable later.
+  ;;   Recently enabled. 02/04/2023: not committed yet.
   ;; :PaterJason/cmp-conjure {}
   ;; :hrsh7th/cmp-buffer {}
   ;; :hrsh7th/cmp-cmdline {}
@@ -10,8 +10,11 @@
   ;; :hrsh7th/cmp-path {}
   ;; :hrsh7th/nvim-cmp {:mod :cmp}
   ;; :neovim/nvim-lspconfig {:mod :lspconfig}
+
   ;; :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
-  ;; :tpope/vim-commentary {}
+
+  ;;   Stuff to enable later.
+  ;; :tpope/vim-commentary {} ;; NO, use nvim-comment
   ;; :tpope/vim-dispatch {}
   ;; :w0rp/ale {:mod :ale}
 

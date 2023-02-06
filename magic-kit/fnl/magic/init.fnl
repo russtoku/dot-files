@@ -54,7 +54,7 @@
   :Olical/aniseed {}
   ;;:Olical/conjure {}
   :/Users/russ/Projects/Conjure/conjure {}
-  ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO
+  ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO, use gitsigns
   :clojure-vim/clojure.vim {}
   :guns/vim-sexp {:mod :sexp}
   :kylechui/nvim-surround {:mod :surround}  ;; instead of tpop/vim-surround
@@ -62,29 +62,51 @@
   :lewis6991/impatient.nvim {}
   :nvim-lualine/lualine.nvim {:requires [:kyazdani42/nvim-web-devicons] :mod :lualine}
   :nvim-treesitter/nvim-treesitter {:mod :treesitter}
+  ;;  treesitter/playground requires the query parser for the query editor.
   :nvim-treesitter/playground {:mod :playground}
-  :terrortylor/nvim-comment {} ;; like tpope/vim-commentary
+  :terrortylor/nvim-comment {:mod :comment} ;; like tpope/vim-commentary
   :tpope/vim-sexp-mappings-for-regular-people {}
-  ;;:tpope/vim-surround {} ;; NO
+  ;;:tpope/vim-surround {} ;; NO, use nvim-surround
   :tpope/vim-vinegar {}
   :wbthomason/packer.nvim {}
   :andymass/vim-matchup {}
 
+  ;; Completion
+  ;; Is nvim-lspconfig required for nvim-cmp? language servers provide more than completions.
+  :neovim/nvim-lspconfig {:mod :lspconfig} ;; plugin/lspconfig.fnl specifies language servers available
+  ;; nvim-cmp provides completions for neovim's built-in lsp client, right?
+  :hrsh7th/nvim-cmp {:mod :cmp} ;; init file, plugin/cmp.fnl sets sources
+  ;;  Start of nvim-cmp sources specified in plugin/cmp.fnl
+  :PaterJason/cmp-conjure {}
+  :hrsh7th/cmp-nvim-lsp {}
+  :hrsh7th/cmp-buffer {}
+  :hrsh7th/cmp-path {}
+  ;; :hrsh7th/cmp-cmdline {} ;; not specified
+  ;;  End of nvim-cmp sources specified in plugin/cmp.fnl
+
+  ;; Fuzzy finder
+  :nvim-telescope/telescope.nvim {:mod :telescope
+                                  :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
+  ;;  NOTE: plugin/telescope.fnl requires rg (ripgrep).
+
   ;; Color schemes
-  :Mofiqul/dracula.nvim {}
-  :bluz71/vim-moonfly-colors {}
+  ;;   Other schemes may be available in ../../colors.
   :bluz71/vim-nightfly-colors {}
+  :bluz71/vim-moonfly-colors {}
   :folke/tokyonight.nvim {}
+  :marko-cerovac/material.nvim {:mod :material}
   ;;:jacoborus/tender.vim {} ;; NO
-  :marko-cerovac/material.nvim {} ;; {:mod :material}
+  ;;:Mofiqul/dracula.nvim {} ;; NO
   )
 
 ;; Select the color scheme
-;;   Should load plugin/<colorscheme_name>.fnl instead to select & customize
+;;   Should load plugin/<colorscheme_name>.fnl to only customize; see plugin/material.fnl.
 (nvim.ex.colorscheme :nightfly)
-;; (nvim.ex.colorscheme :moonfly)  ;; a bit lighter than nightfly
-;; (nvim.ex.colorscheme :material) ;; should load the plugin/material.fnl instead
+;; (nvim.ex.colorscheme :moonfly)  ;; darker than nightfly, comments are thin
+;; (nvim.ex.colorscheme :material) ;; darker's lime green is a bit bright; also has decent light theme.
 ;; (nvim.ex.colorscheme :tokyonight-night) ;; a bit faded, must turn up brightness
+;; (nvim.ex.colorscheme :tokyonight-day) ;; a decent light theme but vertical split border is very light
+;; (nvim.ex.colorscheme :leuven-ish) ;; a decent light theme
 ;; (nvim.ex.colorscheme :dracula) ;; comments are too faded, must turn up brightness
 ;; (nvim.ex.colorscheme :tender) ;; faded like dracula
 

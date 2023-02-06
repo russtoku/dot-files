@@ -4,5 +4,7 @@
   (when ok?
     (lualine.setup
         {:options {:theme "dracula"
-                   :icons_enabled false }})))
+                   :icons_enabled false }})
+    ;;(print "nvim-lualine initialized")
+    ))
 

@@ -7,6 +7,8 @@
 
 (let [(ok? lsp) (pcall #(require :lspconfig))]
   (when ok?
+    ;; These language servers must be installed already.
+    ;; See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     (lsp.clojure_lsp.setup {})
     (lsp.tsserver.setup {})
     (lsp.sumneko_lua.setup
@@ -24,4 +26,7 @@
     (map :<c-n> "lua vim.diagnostic.goto_next()")
 
     (map :<leader>lr "lua vim.lsp.buf.rename()")
-    (map :<leader>lf "lua vim.lsp.buf.formatting()")))
+    (map :<leader>lf "lua vim.lsp.buf.formatting()")
+
+    ;;(print "nvim-lspconfig initialized")
+    ))

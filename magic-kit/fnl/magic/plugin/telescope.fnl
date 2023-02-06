@@ -29,5 +29,7 @@
     (util.lnnoremap :fsi "Telescope lsp_implementations")
     (util.lnnoremap :fsr "Telescope lsp_references")
     (util.lnnoremap :fsS "Telescope lsp_document_symbols")
-    (util.lnnoremap :fss "Telescope lsp_workspace_symbols")))
+    (util.lnnoremap :fss "Telescope lsp_workspace_symbols")
+    ;;(print "telescope initialized")
+    ))
 

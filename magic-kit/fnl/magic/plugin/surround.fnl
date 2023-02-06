@@ -1,9 +1,8 @@
-(module magic.plugin.surround
-  {autoload {nvim aniseed.nvim}})
+(module magic.plugin.surround)
 
-(let [(ok? nvim-surround) (pcall #(require :nvim-surround))]
+(let [(ok? aplugin) (pcall #(require :nvim-surround))]
   (when ok?
-    (nvim-surround.setup)
-    ;;(print "magic.plugin.surround loaded")
+    (aplugin.setup)
+    ;;(print "nvim-surround initialzed")
     ))
 
