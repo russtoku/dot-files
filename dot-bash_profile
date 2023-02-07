@@ -20,6 +20,8 @@ alias vi='echo use nvim'
 alias vim='echo use nvim'
 alias view='nvim -R'
 alias cat=bat
+# Add fnl and web file types to ripgrep.
+alias rg='RIPGREP_CONFIG_PATH=~/.ripgreprc rg'
 
 ## 02/08/22; Switch to tmux2; start: "tmux new -A -s repl"
 ## 11/19/21; Started to use screen to run MIT Scheme with vim-slime. This is
