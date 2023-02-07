@@ -78,8 +78,10 @@
          ;; set splitright
          :splitright true
          ;show invisible characters
-         :list true
-         :listchars (str.join "," ["tab:▶-" "trail:•" "extends:»" "precedes:«" "eol:¬"])
+         :list false
+         ;;:listchars (str.join "," ["tab:▶-" "trail:•" "extends:»" "precedes:«" "eol:¬"])
+         ;; CR is too big :listchars (str.join "," ["tab:▶-" "trail:•" "extends:»" "precedes:«" "eol:⮐"])
+         :listchars (str.join "," ["tab:▶-" "trail:•" "extends:»" "precedes:«" "eol:ꜚ"])
 
 ;         ;; " RT: show a colored vertical line for the last column position
 ;         ;; se colorcolumn=+1
