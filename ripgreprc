@@ -3,3 +3,6 @@ web:*.{html,css,js}*
 
 --type-add
 fnl:*.fnl
+
+--type-add
+vim:*.vim
