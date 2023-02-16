@@ -4,7 +4,8 @@
   (when ok?
     (aplugin.setup
       {:ensure_installed ["clojure" "fennel" "markdown"
-                          "python" "html" "css" "javascript"]
+                          "python" "html" "css" "javascript"
+                          "query"]
        :sync_install true
        :highlight {:enable true
                    :additional_vim_regex_highlighting false}
