@@ -24,12 +24,26 @@
 
   ;; " RT: invoke TSNodeUnderCursor
   ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
-  ;; -> n  Q           * <Nop>
+  ;; -> n  ,tp         * :TSPlaygroundToggle<CR>
   (util.nnoremap :<LocalLeader>tn "TSNodeUnderCursor")
 
   ;; " RT: invoke TSPlaygroundToggle
   ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
-  ;; -> n  Q           * <Nop>
+  ;; -> n  ,tn         * :TSNodeUnderCursor<CR>
   (util.nnoremap :<LocalLeader>tp "TSPlaygroundToggle")
 
+  ;; Mappings to use with the command line:
+  ;; check with: :cmap or (nvim.get_keymap :c)
+  ;;
+  ;; :cnoremap <C-A>       <Home>    " start of line
+  (nvim.set_keymap :c :<C-A> "<Home>" {:noremap true})    ;; start of line
+  (nvim.set_keymap :c :<C-E> "<End>" {:noremap true})     ;; end of line
+  (nvim.set_keymap :c :<C-V> "<S-Left>" {:noremap true})  ;; back one word
+  (nvim.set_keymap :c :<C-W> "<S-Right>" {:noremap true}) ;; forward one word
+  (nvim.set_keymap :c :<C-B> "<Left>" {:noremap true})    ;; back one character
+  (nvim.set_keymap :c :<C-F> "<Right>" {:noremap true})   ;; forward one character
+  (nvim.set_keymap :c :<C-D> "<Del>" {:noremap true})     ;; delete character under cursor
+  (nvim.set_keymap :c :<C-K> "<Up>" {:noremap true})      ;; previous command in history
+  (nvim.set_keymap :c :<C-J> "<Down>" {:noremap true})    ;; next command in history
+  ;;
 )
