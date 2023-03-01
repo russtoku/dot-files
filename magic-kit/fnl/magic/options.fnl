@@ -1,7 +1,8 @@
 (module magic.mapping
   {require {core aniseed.core
             str aniseed.string
-            util magic.util}})
+            util magic.util
+            nvim aniseed.nvim}})
 
 ;; Global editor options
 ;;   neovim options that I like that were in my init.vim.
@@ -95,4 +96,9 @@
     (each [option value (pairs options)]
       (util.set-global-option option value)))
 
+  ;; My tweaks for Conjure plugin
+  ;;  - No HUD
+  ;;  - Don't automatically start REPL
+  (set nvim.g.conjure#log#hud#enabled false)
+  (set nvim.g.conjure#client_on_load false)
 )
