@@ -52,10 +52,13 @@
 ;; Packer configuration format: https://github.com/wbthomason/packer.nvim
 (plugin.use
   :Olical/aniseed {}
-  ;;:Olical/conjure {}
-  :/Users/russ/Projects/Conjure/conjure {}
+  :Olical/conjure {}
+  ;;:/Users/russ/Projects/Conjure/conjure {}
+  ;;:/Users/russ/Projects/Conjure/russ-try/conjure {}
   ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO, use gitsigns
   :clojure-vim/clojure.vim {}
+  :bakpakin/fennel.vim {}
+  ;;:/Users/russ/Projects/Conjure/Tree-sitter/tparse {}
   :guns/vim-sexp {:mod :sexp}
   :kylechui/nvim-surround {:mod :surround}  ;; instead of tpop/vim-surround
   :lewis6991/gitsigns.nvim {:mod :gitsigns} ;; instead of vim-gitgutter
@@ -93,10 +96,8 @@
   ;;   Other schemes may be available in ../../colors.
   :bluz71/vim-nightfly-colors {}
   :bluz71/vim-moonfly-colors {}
-  :folke/tokyonight.nvim {}
-  :marko-cerovac/material.nvim {:mod :material}
-  ;;:jacoborus/tender.vim {} ;; NO
-  ;;:Mofiqul/dracula.nvim {} ;; NO
+  ;;:folke/tokyonight.nvim {}
+  ;;:marko-cerovac/material.nvim {:mod :material}
   )
 
 ;; Select the color scheme
@@ -107,6 +108,4 @@
 ;; (nvim.ex.colorscheme :tokyonight-night) ;; a bit faded, must turn up brightness
 ;; (nvim.ex.colorscheme :tokyonight-day) ;; a decent light theme but vertical split border is very light
 ;; (nvim.ex.colorscheme :leuven-ish) ;; a decent light theme
-;; (nvim.ex.colorscheme :dracula) ;; comments are too faded, must turn up brightness
-;; (nvim.ex.colorscheme :tender) ;; faded like dracula
 
