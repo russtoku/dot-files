@@ -1,0 +1,164 @@
+# 05/09/22; from MacOS; mod for Ubuntu
+alias ls='ls -F'
+
+#  Mac OSX: prevent Terminal window from losing focus
+alias java='java -Djava.awt.headless=true'
+
+#  05/08/22; added after installing neovim from tar.gz in /usr/local/nvim-linux64
+alias view='nvim -R'
+alias vim=nvim
+alias vi=nvim
+#   05/09/22; added bat to /usr/local/bin
+alias cat=bat
+
+alias rg='RIPGREP_CONFIG_PATH=~/.ripgreprc rg'
+
+# my stuff
+export PATH="/home/russ/bin:$PATH"
+
+# neovim installed from tar.gz
+export PATH="$PATH:/usr/local/nvim-linux64/bin"
+
+# For golang
+export PATH="$PATH:/usr/local/go/bin"
+#  Go tools should be installed under the default GOPATH
+#  GOPATH defaults to a ~/go (see go help gopath)
+##export PATH=$PATH:~/go/bin
+
+# For Subversion 1.6.x -- Xcode one doesn't have JavaHL so get brew's one to
+#                      -- work with Subclipse
+#SVN_1_6=/Applications/Xcode.app/Contents/Developer/usr/subversion-1.6
+#export PATH=$SVN_1_6/bin:$PATH
+
+# Maven and Gradle build tools
+##export PATH=$PATH:~russ/apache-maven-3.6.3/bin
+##export PATH=$PATH:~russ/gradle-5.6.2/bin
+
+# For Clojure via Leiningen
+#alias clojure='java -jar ~/.lein/self-installs/leiningen-2.7.1-standalone.jar '
+
+# For Oracle SQL Developer command line client
+#SQLDEV_HOME=/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper
+#alias sqlcl=$SQLDEV_HOME/bin/sql
+
+# For Oracle Instant Client and SQL/Plus
+#export ORACLE_HOME=/Users/russ/instantclient_12_2
+#export PATH=$ORACLE_HOME:$PATH
+#export DYLD_LIBRARY_PATH=$ORACLE_HOME
+
+# raise the max number of open files for Jupyter Lab
+ulimit -n 1000
+
+# For Racket
+RACKET_HOME=/Applications/Racket
+export PATH=$RACKET_HOME/bin:$PATH
+
+# If compiled NVIDIA encoder and decoder plugins are available
+export GST_PLUGIN_PATH=/usr/local/lib/gstreamer-1.0
+
+# For Miniconda
+#   - Keep the "conda initialize" stuff at the end of this file to use
+#     the conda command.
+CONDA_HOME=$HOME/miniconda3
+export PATH=$CONDA_HOME/bin:$PATH
+
+workon() {
+  ACT="$CONDA_HOME/envs/$1"
+  if [ "$1" != "" ] && [ -d "$ACT" ]; then
+    conda activate "$1"
+  else
+    echo "Environments:"
+    /bin/ls "$CONDA_HOME/envs"
+  fi
+}
+
+alias workoff='conda deactivate'
+
+# For my stuff; put after conda to have my stuff take precedence
+export PATH=$HOME/bin:$PATH
+
+
+# added for rbenv
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# added for nodenv
+#if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+
+## added for direnv
+##eval "$(direnv hook bash)"
+
+## added for VSCode
+##export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+## Use the full path for version installed in /Library/Java/JavaVirtualMachine
+##export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+##export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+
+#  To silence warnings about zsh not being the default login shell
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+### For kitty terminal emulator to set the tab title to the tty number.
+##tab_title() {
+##    echo  "\033]2;$1\007\c"
+##}
+##
+##st() {
+##    #echo  "\033]2;$(tty | sed 's?/dev/??')\007\c"
+##    #echo  "\033]2;$(tty | sed 's?.*/??')\007\c"
+##    tab_title $(tty | sed 's?.*/??')
+##}
+### End of For kitty terminal emulator to set the tab title to the tty number.
+
+#  Used in bash prompt
+#  - https://danishpraka.sh/2018/07/06/git-branch-zsh.html
+function git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" ]]; then
+        :
+    else
+        echo '('$branch')'
+    fi
+}
+
+#  Color prompt: inverse light cyan with Git branch
+#  NOTE: Be sure that non-printable sequences are enclosed in \[ and \].
+#  - https://linuxhostsupport.com/blog/how-to-change-the-color-of-your-linux-prompt/
+#export PS1='\[\033[7;36m\]\w $(git_branch)\[\033[00m\] $ '
+#  - adapted from Suz Hinton's bash prompt.
+##export PS1='\[\033[0;36m\]\W \[\033[0;35m\]$(git_branch)\[\033[00m\]$ '
+# For kitty to also set the tab title to the tty number.
+##export PS1='\[\033]2;$(tty | sed 's?.*/??')\007\033[0;36m\]\W \[\033[0;35m\]$(git_branch)\[\033[00m\]$ '
+export PS1='\[\033]2;$(tty | sed 's?/dev/??')\007\033[0;36m\]\W \[\033[0;35m\]$(git_branch)\[\033[00m\]$ '
+
+
+
+##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+##export SDKMAN_DIR="/Users/russ/.sdkman"
+##[[ -s "/Users/russ/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/russ/.sdkman/bin/sdkman-init.sh"
+
+# Add fzf binary's directory
+##FZF_HOME=/Users/russ/.vim/pack/bundle/start/fzf
+##export PATH="$PATH:$FZF_HOME/bin"
+
+#  Set conda "config auto_activate_base false" so that the base environment is not
+#  activated when a shell starts up. This shoudl speed-up bash shell initialization
+#  and not set the prompt with the environment.
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/russ/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/russ/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/russ/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/russ/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# 02/01/22: Manage Node versions and friends; instead of nodenv.
+##export VOLTA_HOME="$HOME/.volta"
+##export PATH="$VOLTA_HOME/bin:$PATH"
+
