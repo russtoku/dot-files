@@ -11,4 +11,4 @@ echo "symlinking $HOME/.config/kitty"
 ln -sf "$HOME"/dot-files/kitty "$HOME"/.config/kitty
 
 echo "symlinking $HOME/.config/nvim"
-ln -sf /Users/russ/dot-files/magic-kit /Users/russ/.config/nvim
+ln -sf "$HOME"/dot-files/magic-kit "$HOME"/.config/nvim
