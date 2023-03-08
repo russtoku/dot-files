@@ -109,7 +109,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 ##}
 ### End of For kitty terminal emulator to set the tab title to the tty number.
 ### For kitty terminal emulator to clear the scrollback screen buffer.
-alias clear_sb="printf '\E[H\E[3J'"
+alias cls="printf '\E[H\E[3J'"
 
 #  Used in bash prompt
 #  - https://danishpraka.sh/2018/07/06/git-branch-zsh.html
