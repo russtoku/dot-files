@@ -21,7 +21,9 @@
     (map :gr "lua vim.lsp.buf.references()")
     (map :gi "lua vim.lsp.buf.implementation()")
     (map :K "lua vim.lsp.buf.hover()")
-    (map :<c-k> "lua vim.lsp.buf.signature_help()")
+    ;  We use <c-k> to move to the window above.
+    ;(map :<c-k> "lua vim.lsp.buf.signature_help()")
+    (map :<leader>k "lua vim.lsp.buf.signature_help()")
     (map :<c-p> "lua vim.diagnostic.goto_prev()")
     (map :<c-n> "lua vim.diagnostic.goto_next()")
 

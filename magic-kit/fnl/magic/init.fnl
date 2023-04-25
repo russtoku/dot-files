@@ -52,14 +52,14 @@
 ;; Packer configuration format: https://github.com/wbthomason/packer.nvim
 (plugin.use
   :Olical/aniseed {}
-  :Olical/conjure {}
-  ;;:/Users/russ/Projects/Conjure/conjure {}
-  ;;:/Users/russ/Projects/Conjure/russ-try/conjure {}
+  ;  :Olical/conjure {:mod :conjure}
+  :/Users/russ/Projects/Conjure/russ-try/conjure {:mod :conjure}
   ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO, use gitsigns
   :clojure-vim/clojure.vim {}
   :bakpakin/fennel.vim {}
-  ;;:/Users/russ/Projects/Conjure/Tree-sitter/tparse {}
+  :/Users/russ/Projects/Conjure/Tree-sitter/tparse {}
   :guns/vim-sexp {:mod :sexp}
+  ;:benknoble/vim-sexp {:mod :sexp} ;; causes problems
   :kylechui/nvim-surround {:mod :surround}  ;; instead of tpop/vim-surround
   :lewis6991/gitsigns.nvim {:mod :gitsigns} ;; instead of vim-gitgutter
   :lewis6991/impatient.nvim {}
@@ -68,7 +68,9 @@
   ;;  treesitter/playground requires the query parser for the query editor.
   :nvim-treesitter/playground {:mod :playground}
   :terrortylor/nvim-comment {:mod :comment} ;; like tpope/vim-commentary
-  :tpope/vim-sexp-mappings-for-regular-people {}
+  ;:tpope/vim-sexp-mappings-for-regular-people {}
+  ;  A cheat way to add racket to g:sexp_filetypes and set mappings for the filetype.
+  :/Users/russ/Projects/Conjure/russ-try/vim-sexp-mappings-for-regular-people {}
   ;;:tpope/vim-surround {} ;; NO, use nvim-surround
   :tpope/vim-vinegar {}
   :wbthomason/packer.nvim {}
