@@ -127,8 +127,9 @@ export -f show_virtual_env
 #export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 #export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 # 05/19/22: The new way used with archive file (.tar.gz).
-#export JAVA_HOME=/usr/local/Java/jdk8u332-b09/Contents/Home
-export JAVA_HOME=/usr/local/Java/jdk8u345-b01/Contents/Home
+export JAVA_HOME=/usr/local/Java/jdk8u362-b09/Contents/Home
+#export JAVA_HOME=/usr/local/Java/jdk-17.0.6+10/Contents/Home
+
 export PATH="$JAVA_HOME/bin:$PATH"
 
 #  To silence warnings about zsh not being the default login shell
