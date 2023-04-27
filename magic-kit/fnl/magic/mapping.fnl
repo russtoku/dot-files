@@ -37,16 +37,19 @@
   ;; Mappings to use with the command line:
   ;; check with: :cmap or (nvim.get_keymap :c)
   ;;
-  ;; :cnoremap <C-A>       <Home>    " start of line
-  (nvim.set_keymap :c :<C-A> "<Home>" {:noremap true})    ;; start of line
-  (nvim.set_keymap :c :<C-E> "<End>" {:noremap true})     ;; end of line
-  (nvim.set_keymap :c :<C-V> "<S-Left>" {:noremap true})  ;; back one word
-  (nvim.set_keymap :c :<C-W> "<S-Right>" {:noremap true}) ;; forward one word
-  (nvim.set_keymap :c :<C-B> "<Left>" {:noremap true})    ;; back one character
-  (nvim.set_keymap :c :<C-F> "<Right>" {:noremap true})   ;; forward one character
-  (nvim.set_keymap :c :<C-D> "<Del>" {:noremap true})     ;; delete character under cursor
-  (nvim.set_keymap :c :<C-K> "<Up>" {:noremap true})      ;; previous command in history
-  (nvim.set_keymap :c :<C-J> "<Down>" {:noremap true})    ;; next command in history
+  ;; :cnoremap <C-a>       <Home>    " start of line
+  (nvim.set_keymap :c :<C-a> "<Home>" {:noremap true})    ;; start of line
+  (nvim.set_keymap :c :<C-e> "<End>" {:noremap true})     ;; end of line
+  ; Don't use <C-V> in the console because it's normally used to escape control chars.
+  (nvim.set_keymap :c :<C-h> "<S-Left>" {:noremap true})  ;; back one word
+  (nvim.set_keymap :c :<C-l> "<S-Right>" {:noremap true}) ;; forward one word
+
+  (nvim.set_keymap :c :<C-b> "<Left>" {:noremap true})    ;; back one character
+  (nvim.set_keymap :c :<C-f> "<Right>" {:noremap true})   ;; forward one character
+
+  (nvim.set_keymap :c :<C-d> "<Del>" {:noremap true})     ;; delete character under cursor
+  (nvim.set_keymap :c :<C-k> "<Up>" {:noremap true})      ;; previous command in history
+  (nvim.set_keymap :c :<C-j> "<Down>" {:noremap true})    ;; next command in history
 
   ;; RT: Make the conjure log buffer 5 lines smaller and jump back up to code
   ;; window.
