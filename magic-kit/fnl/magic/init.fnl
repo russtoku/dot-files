@@ -35,6 +35,10 @@
 (set nvim.g.loaded_ruby_provider 0)
 (set nvim.g.loaded_python3_provider 0)
 
+; Disable netrw when we use nvim-tree/nvim-tree.lua.
+(set nvim.g.loaded_netrw 1)
+(set nvim.g.loaded_netrwPlugin 1)
+
 ;;; Mappings
 
 (set nvim.g.mapleader " ")
@@ -72,7 +76,8 @@
   ;  A cheat way to add racket to g:sexp_filetypes and set mappings for the filetype.
   :/Users/russ/Projects/Conjure/russ-try/vim-sexp-mappings-for-regular-people {}
   ;;:tpope/vim-surround {} ;; NO, use nvim-surround
-  :tpope/vim-vinegar {}
+  ;;:tpope/vim-vinegar {}  ;; NO, use nvim-tree.lua
+  :nvim-tree/nvim-tree.lua {:mod :nvim-tree} ;; directory tree navigation
   :wbthomason/packer.nvim {}
   :andymass/vim-matchup {}
 

@@ -53,7 +53,11 @@
 
   ;; RT: Make the conjure log buffer 5 lines smaller and jump back up to code
   ;; window.
-  (util.nnoremap :<LocalLeader>bu ":resize -5<CR>:wincmd k")
+  (util.nnoremap :<LocalLeader>bu ":resize -5<CR>:wincmd k<CR>")
+
+  ;; Toggle nvim-tree navigation window
+  (util.nnoremap :<Leader>t ":NvimTreeToggle<CR>")
+
 
   ;; Mappings to switch between windows:
   ; map <C-h> <C-W>h
