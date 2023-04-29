@@ -55,6 +55,9 @@ export PATH=$PATH:~/go/bin
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+# Enable man for XCode tools
+export MANPATH=$MANPATH:/Library/Developer/CommandLineTools/usr/share/man
+
 # For Clojure via Leiningen
 # Using brew clojure instead for clojure and clj.
 #alias clojure='java -jar ~/.lein/self-installs/leiningen-2.7.1-standalone.jar '
