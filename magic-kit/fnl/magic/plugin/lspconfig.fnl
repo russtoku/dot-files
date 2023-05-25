@@ -11,9 +11,15 @@
     ;; See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     ;;(lsp.clojure_lsp.setup {})
     ;;(lsp.tsserver.setup {})
-    ;;(lsp.sumneko_lua.setup
-    ;;  {:cmd ["lua-language-server"]
-    ;;   :settings {:Lua {:telemetry {:enable false}}}})
+    (lsp.lua_ls.setup
+      {:cmd ["lua-language-server"]
+       :settings {:Lua {:runtime {:version "LuaJIT"}
+                        :diagnostics {:globals [:vim]}
+                        :workspace {:library (vim.api.nvim_get_runtime_file "" true)
+                                    :checkThirdParty false}
+                        :telemetry {:enable false}}}})
+    ;;(lsp.fennel_ls.setup {})
+    (lsp.jedi_language_server.setup {}) ;; for Python
 
     ;; https://www.chrisatmachine.com/Neovim/27-native-lsp/
     (map :gd "lua vim.lsp.buf.definition()")

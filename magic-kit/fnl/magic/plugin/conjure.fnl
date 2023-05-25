@@ -18,5 +18,18 @@
 (set nvim.g.conjure#filetype#lisp false)
 (set nvim.g.conjure#filetype#rust false)
 
+; Use es instead of E for keymapping to evaluate visual selection.
+(set nvim.g.conjure#mapping#eval_visual "es")
+
+; Turn off lsp diagnostics for the Conjure log buffer.
+; https://github.com/Olical/conjure/wiki/Frequently-asked-questions#my-log-buffer-is-full-of-diagnostic-warnings-and-errors--a-plugin-is-running-in-the-log-buffer-and-i-dont-want-it-to
+; autocmd BufNewFile conjure-log-* lua vim.diagnostic.disable(0)
+(do
+  (nvim.ex.augroup :conjure_log_no_diags)
+  (nvim.ex.autocmd_)
+  (nvim.ex.autocmd :BufNewFile :conjure-log-* "lua vim.diagnostic.disable(0)")
+  (nvim.ex.augroup :END))
+
+; Completion menu behavior
 (set nvim.o.completeopt "menuone,noselect")
 
