@@ -178,6 +178,9 @@ export PS1='\[\033]2;$(basename $(pwd))\007\033[0;36m\]\W \[\033[0;35m\]$(git_br
 #  Added for direnv & show_virtual_env()
 export PS1='$(show_virtual_env)'$PS1
 
+# PostgresQL
+export PATH=$PATH:/usr/local/opt/postgresql@15/bin
+
 # Poetry depency and package manager for Python
 export PATH=$PATH:/Users/russ/Projects/Poetry/bin
 
