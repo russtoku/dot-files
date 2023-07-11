@@ -19,7 +19,7 @@ alias top='top -l 1 -n 20 -ncols 12'
 alias vi='echo use nvim'
 alias vim='echo use nvim'
 alias view='nvim -R'
-alias cat=bat
+
 # Add fnl and web file types to ripgrep.
 alias rg='RIPGREP_CONFIG_PATH=~/.ripgreprc rg'
 
@@ -30,8 +30,8 @@ alias rg='RIPGREP_CONFIG_PATH=~/.ripgreprc rg'
 # tmux: repl is an arbitrary name I'm using. I'll split a window into top
 #       and bottom panes to run a repl in the bottom on. vim-slime can address
 #       the bottom pane as target using {bottom} instead of the pane number.
-alias start-tmux="tmux new -A -s repl"
-alias chk-tmux="tmux ls"
+##alias start-tmux="tmux new -A -s repl"
+##alias chk-tmux="tmux ls"
 
 # ldd equivalent
 alias ldd='otool -L'
