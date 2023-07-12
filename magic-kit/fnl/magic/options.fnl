@@ -31,7 +31,7 @@
          ;; " End of Taken from liuchengxu/vim-better-default
 
          ;;:wildignore "*/tmp/*,*.so,*.swp,*.zip"
-
+         ;; RT: We use the following because we aren't using a function that doesn't append values.
          :wildignore "*/tmp/*,*.so,*.o,*.obj,*.swp,*.zip,*/node_modules/*,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip"
          ;; set ignorecase     " Case insensitive search
          :ignorecase true
@@ -44,7 +44,7 @@
          :hlsearch true
          ;; set wrap                          " Turn on line wrapping.
          ;; set scrolloff=3                   " Show 3 lines of context around the cursor.
-         :scrolloff 3
+         :scrolloff 2
          ;; set visualbell                    " No beeping.
          :visualbell true
          ;;? :errorbells false
@@ -89,6 +89,9 @@
          :colorcolumn "+1"
          ;; :hi ColorColumn is set in init.fnl or colors.fnl
 
+         ;; default: shada=!,'100,<50,s10,h
+         ;;  ~/PVT is an encrypted filesystem. r is for removable media.
+         :shada "!,'100,<50,s10,h,r/Users/russ/PVT"
          ;settings needed for compe autocompletion
          ;;? :completeopt "menuone,noselect"
          ;;? :signcolumn "number"

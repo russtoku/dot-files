@@ -58,42 +58,36 @@
   :Olical/aniseed {}
   ;  :Olical/conjure {:mod :conjure}
   :/Users/russ/Projects/Conjure/russ-try/conjure {:mod :conjure}
-  ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO, use gitsigns
+  :Olical/nfnl {}  ;; Neovim v0.9.0+
   :clojure-vim/clojure.vim {}
   :jaawerth/fennel-nvim {} ;; instead of :bakpakin/fennel.vim {}
   :guns/vim-sexp {:mod :sexp}
-  ;:benknoble/vim-sexp {:mod :sexp} ;; causes problems
-  :kylechui/nvim-surround {:mod :surround}  ;; instead of tpop/vim-surround
-  :lewis6991/gitsigns.nvim {:mod :gitsigns} ;; instead of vim-gitgutter
+  :tpope/vim-sexp-mappings-for-regular-people {}
+  :kylechui/nvim-surround {}  ;; instead of :tpope/vim-surround {}
+  :lewis6991/gitsigns.nvim {:mod :gitsigns} ;; instead of :airblade/vim-gitgutter {}
   :lewis6991/impatient.nvim {}
   :nvim-lualine/lualine.nvim {:requires [:kyazdani42/nvim-web-devicons] :mod :lualine}
   :nvim-treesitter/nvim-treesitter {:mod :treesitter}
-  ;;  treesitter/playground requires the query parser for the query editor.
+  ; treesitter/playground requires the query parser for the query editor.
   :nvim-treesitter/playground {:mod :playground}
-  :terrortylor/nvim-comment {:mod :comment} ;; like tpope/vim-commentary
-  ;;:tpope/vim-surround {} ;; NO, use nvim-surround
-  ;;:tpope/vim-vinegar {}  ;; NO, use nvim-tree.lua
+  :terrortylor/nvim-comment {} ;; instead of :tpope/vim-commentary {}
   :nvim-tree/nvim-tree.lua {:mod :nvim-tree} ;; directory tree navigation
   :wbthomason/packer.nvim {}
   :andymass/vim-matchup {}
-  ;:tpope/vim-sexp-mappings-for-regular-people {}
-  ;  A cheat way to add racket to g:sexp_filetypes and set mappings for the filetype.
-  :/Users/russ/Projects/Conjure/russ-try/vim-sexp-mappings-for-regular-people {}
-  :/Users/russ/Projects/Conjure/Tree-sitter/tparse {} ;; add my experiments
 
   ;; Completion
   ;; Is nvim-lspconfig required for nvim-cmp? language servers provide more than completions.
   :neovim/nvim-lspconfig {:mod :lspconfig} ;; plugin/lspconfig.fnl specifies language servers available
   ;; nvim-cmp provides completions for neovim's built-in lsp client, right?
   :hrsh7th/nvim-cmp {:mod :cmp} ;; init file, plugin/cmp.fnl sets sources
-  ;;  Start of nvim-cmp sources specified in plugin/cmp.fnl
+  ;;  -- Start of nvim-cmp sources specified in plugin/cmp.fnl
   :PaterJason/cmp-conjure {}
   :hrsh7th/cmp-nvim-lsp {}
   :hrsh7th/cmp-buffer {}
   :hrsh7th/cmp-path {} ;; for filesystem paths
   :hrsh7th/cmp-nvim-lua {}  ;; for Neovim's Lua API
   ;; :hrsh7th/cmp-cmdline {} ;; not specified
-  ;;  End of nvim-cmp sources specified in plugin/cmp.fnl
+  ;;  -- End of nvim-cmp sources specified in plugin/cmp.fnl
 
   ;; Fuzzy finder
   :nvim-telescope/telescope.nvim {:mod :telescope

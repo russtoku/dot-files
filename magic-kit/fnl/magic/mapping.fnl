@@ -1,70 +1,50 @@
 (module magic.mapping
   {require {core aniseed.core
             nvim aniseed.nvim
-            nu aniseed.nvim.util
-            util magic.util}})
+            nu aniseed.nvim.util}})
 
 ;; Mappings that I like that were in my init.vim:
 
+;; Helper for setting normal mode keymaps instead of nnoremap() and lnnoremap()
+;; from magic.util. Example:
+;;  (map :<leader>k  "lua vim.lsp.buf.signature_help()" "LSP signature info about symbol")
+(defn- map [from to desc]
+  (nvim.set_keymap :n from (.. ":" to "<CR>")
+                   {:noremap true :silent true :desc desc}))
+
 (defn setup []
-  ;; Trim trailing whitespace.
-  ;; from Olical/dotfiles/stowed/.config/nvim/fnl/dotfiles/module/mapping.fnl
-  ;; -> n  <Space>bt   * :%s/\s\+$//e<CR>
-  (util.lnnoremap :bt "%s/\\s\\+$//e")
 
-  ;; Cancel search highlighting
-  ;; map <bs> :noh<CR>
-  ;; -> n  <BS>        * :noh<CR>
-  (util.nnoremap :<bs> "noh")
-
-  ;; " RT: Disable Ex mode
-  ;; map Q <Nop>
-  ;; -> n  Q           * <Nop>
-  (util.nnoremap :Q "")
-
-  ;; " RT: invoke TSNodeUnderCursor
-  ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
-  ;; -> n  ,tn         * :TSNodeUnderCursor<CR>
-  (util.nnoremap :<LocalLeader>tn "TSNodeUnderCursor")
-  ;(util.lnnoremap :tn "TSNodeUnderCursor")
-
-  ;; " RT: invoke TSPlaygroundToggle
-  ;; nnoremap <LocalLeader>tn :TSNodeUnderCursor<CR>
-  ;; -> n  ,tp         * :TSPlaygroundToggle<CR>
-  (util.nnoremap :<LocalLeader>tp "TSPlaygroundToggle")
-  ;(util.lnnoremap :tp "TSNodeUnderCursor")
-
-  ;; Mappings to use with the command line:
-  ;; check with: :cmap or (nvim.get_keymap :c)
-  ;;
-  ;; :cnoremap <C-a>       <Home>    " start of line
-  (nvim.set_keymap :c :<C-a> "<Home>" {:noremap true})    ;; start of line
-  (nvim.set_keymap :c :<C-e> "<End>" {:noremap true})     ;; end of line
-  ; Don't use <C-V> in the console because it's normally used to escape control chars.
-  (nvim.set_keymap :c :<C-h> "<S-Left>" {:noremap true})  ;; back one word
-  (nvim.set_keymap :c :<C-l> "<S-Right>" {:noremap true}) ;; forward one word
-
-  (nvim.set_keymap :c :<C-b> "<Left>" {:noremap true})    ;; back one character
-  (nvim.set_keymap :c :<C-f> "<Right>" {:noremap true})   ;; forward one character
-
-  (nvim.set_keymap :c :<C-d> "<Del>" {:noremap true})     ;; delete character under cursor
-  (nvim.set_keymap :c :<C-k> "<Up>" {:noremap true})      ;; previous command in history
-  (nvim.set_keymap :c :<C-j> "<Down>" {:noremap true})    ;; next command in history
-
-  ;; RT: Make the conjure log buffer 5 lines smaller and jump back up to code
-  ;; window.
-  (util.nnoremap :<LocalLeader>bu ":resize -5<CR>:wincmd k<CR>")
-
-  ;; Toggle nvim-tree navigation window
-  (util.nnoremap :<Leader>t ":NvimTreeToggle<CR>")
-
+  (nvim.set_keymap :n :Q :<Nop> {:noremap true :silent true :desc "Disable Ex mode"})
+  ;; Trim trailing whitespace from Olical/dotfiles/stowed/.config/nvim/fnl/dotfiles/module/mapping.fnl
+  (map :<leader>st      "%s/\\s\\+$//e"          "Trim trailing whitespace")
+  (map :<bs>            "noh"                    "Cancel search highlighting")
+  (map :<LocalLeader>tp "TSPlaygroundToggle"     "Show/hide Tree-sitter playground")
+  (map :<LocalLeader>tn "TSNodeUnderCursor"      "Show/hide Tree-sitter node under cursor")
+  (map :<Leader>t       "NvimTreeToggle<CR>"     "Show/hide file tree navigation")
+  (map :<Leader>o       "NvimTreeFindFile<CR>"   "Show buffer in file tree navigation")
+  (map :<LocalLeader>bu "resize -5<CR>:wincmd k" "Make Conjure buffer smaller and move to window above")
 
   ;; Mappings to switch between windows:
-  ; map <C-h> <C-W>h
-  (util.nnoremap :<C-j> ":wincmd j") ; down
-  (util.nnoremap :<C-k> ":wincmd k") ; up
-  (util.nnoremap :<C-h> ":wincmd h") ; left
-  (util.nnoremap :<C-l> ":wincmd l") ; right
+  ;;  Instead of <C-W>h use <C-h>, etc.
+  (map :<C-j> "wincmd j" "Move to window below")
+  (map :<C-k> "wincmd k" "Move to window above")
+  (map :<C-h> "wincmd h" "Move to left window")
+  (map :<C-l> "wincmd l" "Move to right window")
+
+  ;; Mappings to use with the command line:
+  ;;   Check with `:cmap` or `(nvim.get_keymap :c)`
+  ;;   Don't use <C-V> in the console because it's normally used to escape control chars.
+  ;;
+  ;; :cnoremap <C-a> <Home>    " start of line
+  (nvim.set_keymap :c :<C-a> "<Home>"    {:noremap true}) ;; start of line
+  (nvim.set_keymap :c :<C-e> "<End>"     {:noremap true}) ;; end of line
+  (nvim.set_keymap :c :<C-h> "<S-Left>"  {:noremap true}) ;; back one word
+  (nvim.set_keymap :c :<C-l> "<S-Right>" {:noremap true}) ;; forward one word
+  (nvim.set_keymap :c :<C-b> "<Left>"    {:noremap true}) ;; back one character
+  (nvim.set_keymap :c :<C-f> "<Right>"   {:noremap true}) ;; forward one character
+  (nvim.set_keymap :c :<C-d> "<Del>"     {:noremap true}) ;; delete character under cursor
+  (nvim.set_keymap :c :<C-k> "<Up>"      {:noremap true}) ;; previous command in history
+  (nvim.set_keymap :c :<C-j> "<Down>"    {:noremap true}) ;; next command in history
 
   ;; TODO:
   ;" move lines up and down

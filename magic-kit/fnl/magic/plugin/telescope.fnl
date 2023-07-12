@@ -1,6 +1,11 @@
 (module magic.plugin.telescope
-  {autoload {nvim aniseed.nvim
-             util magic.util}})
+  {autoload {nvim aniseed.nvim}})
+
+;; Helper for setting normal mode keymaps copied from fnl/magic/mapping.fnl
+;; but without description.
+;; Use instead of nnoremap() and lnnoremap() from magic.util.
+(defn- map [from to]
+  (nvim.set_keymap :n from (.. ":" to "<CR>") {:noremap true :silent true}))
 
 (let [(ok? telescope) (pcall #(require :telescope))]
   (when ok?
@@ -11,25 +16,25 @@
                             "--smart-case" "--hidden" "--follow"
                             "-g" "!.git/"]}})
 
-    (util.lnnoremap :ff "Telescope find_files hidden=true")
-    (util.lnnoremap :f- "Telescope file_browser")
-    (util.lnnoremap :fg "Telescope live_grep")
-    (util.lnnoremap :* "Telescope grep_string")
-    (util.lnnoremap :fb "Telescope buffers")
-    (util.lnnoremap :fH "Telescope help_tags")
-    (util.lnnoremap :fm "Telescope keymaps")
-    (util.lnnoremap :fM "Telescope marks")
-    (util.lnnoremap :fh "Telescope oldfiles")
-    (util.lnnoremap :ft "Telescope filetypes")
-    (util.lnnoremap :fc "Telescope commands")
-    (util.lnnoremap :fC "Telescope command_history")
-    (util.lnnoremap :fq "Telescope quickfix")
-    (util.lnnoremap :fl "Telescope loclist")
-    (util.lnnoremap :fsa "Telescope lsp_code_actions")
-    (util.lnnoremap :fsi "Telescope lsp_implementations")
-    (util.lnnoremap :fsr "Telescope lsp_references")
-    (util.lnnoremap :fsS "Telescope lsp_document_symbols")
-    (util.lnnoremap :fss "Telescope lsp_workspace_symbols")
-    ;;(print "telescope initialized")
+    ;; Set keymaps.
+    (map :<leader>ff  "Telescope find_files hidden=true")
+    (map :<leader>f-  "Telescope file_browser")
+    (map :<leader>fg  "Telescope live_grep")
+    (map :<leader>*   "Telescope grep_string")
+    (map :<leader>fb  "Telescope buffers")
+    (map :<leader>fH  "Telescope help_tags")
+    (map :<leader>fm  "Telescope keymaps")
+    (map :<leader>fM  "Telescope marks")
+    (map :<leader>fh  "Telescope oldfiles")
+    (map :<leader>ft  "Telescope filetypes")
+    (map :<leader>fc  "Telescope commands")
+    (map :<leader>fC  "Telescope command_history")
+    (map :<leader>fq  "Telescope quickfix")
+    (map :<leader>fl  "Telescope loclist")
+    (map :<leader>fsa "Telescope lsp_code_actions")
+    (map :<leader>fsi "Telescope lsp_implementations")
+    (map :<leader>fsr "Telescope lsp_references")
+    (map :<leader>fsS "Telescope lsp_document_symbols")
+    (map :<leader>fss "Telescope lsp_workspace_symbols")
     ))
 
