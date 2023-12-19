@@ -35,6 +35,10 @@
 (set nvim.g.loaded_ruby_provider 0)
 (set nvim.g.loaded_python3_provider 0)
 
+; Disable netrw when we use nvim-tree/nvim-tree.lua.
+(set nvim.g.loaded_netrw 1)
+(set nvim.g.loaded_netrwPlugin 1)
+
 ;;; Mappings
 
 (set nvim.g.mapleader " ")
@@ -52,14 +56,13 @@
 ;; Packer configuration format: https://github.com/wbthomason/packer.nvim
 (plugin.use
   :Olical/aniseed {}
-  :Olical/conjure {}
-  ;;:/Users/russ/Projects/Conjure/conjure {}
-  ;;:/Users/russ/Projects/Conjure/russ-try/conjure {}
+  ;  :Olical/conjure {:mod :conjure}
+  :/Users/russ/Projects/Conjure/russ-try/conjure {:mod :conjure}
   ;;:airblade/vim-gitgutter {:mod :gitgutter} ;; NO, use gitsigns
   :clojure-vim/clojure.vim {}
-  :bakpakin/fennel.vim {}
-  ;;:/Users/russ/Projects/Conjure/Tree-sitter/tparse {}
+  :jaawerth/fennel-nvim {} ;; instead of :bakpakin/fennel.vim {}
   :guns/vim-sexp {:mod :sexp}
+  ;:benknoble/vim-sexp {:mod :sexp} ;; causes problems
   :kylechui/nvim-surround {:mod :surround}  ;; instead of tpop/vim-surround
   :lewis6991/gitsigns.nvim {:mod :gitsigns} ;; instead of vim-gitgutter
   :lewis6991/impatient.nvim {}
@@ -68,11 +71,15 @@
   ;;  treesitter/playground requires the query parser for the query editor.
   :nvim-treesitter/playground {:mod :playground}
   :terrortylor/nvim-comment {:mod :comment} ;; like tpope/vim-commentary
-  :tpope/vim-sexp-mappings-for-regular-people {}
   ;;:tpope/vim-surround {} ;; NO, use nvim-surround
-  :tpope/vim-vinegar {}
+  ;;:tpope/vim-vinegar {}  ;; NO, use nvim-tree.lua
+  :nvim-tree/nvim-tree.lua {:mod :nvim-tree} ;; directory tree navigation
   :wbthomason/packer.nvim {}
   :andymass/vim-matchup {}
+  ;:tpope/vim-sexp-mappings-for-regular-people {}
+  ;  A cheat way to add racket to g:sexp_filetypes and set mappings for the filetype.
+  :/Users/russ/Projects/Conjure/russ-try/vim-sexp-mappings-for-regular-people {}
+  :/Users/russ/Projects/Conjure/Tree-sitter/tparse {} ;; add my experiments
 
   ;; Completion
   ;; Is nvim-lspconfig required for nvim-cmp? language servers provide more than completions.
@@ -83,7 +90,8 @@
   :PaterJason/cmp-conjure {}
   :hrsh7th/cmp-nvim-lsp {}
   :hrsh7th/cmp-buffer {}
-  :hrsh7th/cmp-path {}
+  :hrsh7th/cmp-path {} ;; for filesystem paths
+  :hrsh7th/cmp-nvim-lua {}  ;; for Neovim's Lua API
   ;; :hrsh7th/cmp-cmdline {} ;; not specified
   ;;  End of nvim-cmp sources specified in plugin/cmp.fnl
 
@@ -91,6 +99,9 @@
   :nvim-telescope/telescope.nvim {:mod :telescope
                                   :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
   ;;  NOTE: plugin/telescope.fnl requires rg (ripgrep).
+
+  ;; Hints when using mapped keys.
+  :folke/which-key.nvim {:mod :which-key}
 
   ;; Color schemes
   ;;   Other schemes may be available in ../../colors.

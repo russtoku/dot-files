@@ -95,10 +95,6 @@
          }]
     (each [option value (pairs options)]
       (util.set-global-option option value)))
+  ;;--- end of options ---
 
-  ;; My tweaks for Conjure plugin
-  ;;  - No HUD
-  ;;  - Don't automatically start REPL
-  (set nvim.g.conjure#log#hud#enabled false)
-  (set nvim.g.conjure#client_on_load false)
 )

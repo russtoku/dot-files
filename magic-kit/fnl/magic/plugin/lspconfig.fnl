@@ -11,9 +11,15 @@
     ;; See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     ;;(lsp.clojure_lsp.setup {})
     ;;(lsp.tsserver.setup {})
-    ;;(lsp.sumneko_lua.setup
-    ;;  {:cmd ["lua-language-server"]
-    ;;   :settings {:Lua {:telemetry {:enable false}}}})
+    (lsp.lua_ls.setup
+      {:cmd ["lua-language-server"]
+       :settings {:Lua {:runtime {:version "LuaJIT"}
+                        :diagnostics {:globals [:vim]}
+                        :workspace {:library (vim.api.nvim_get_runtime_file "" true)
+                                    :checkThirdParty false}
+                        :telemetry {:enable false}}}})
+    ;;(lsp.fennel_ls.setup {})
+    (lsp.jedi_language_server.setup {}) ;; for Python
 
     ;; https://www.chrisatmachine.com/Neovim/27-native-lsp/
     (map :gd "lua vim.lsp.buf.definition()")
@@ -21,7 +27,9 @@
     (map :gr "lua vim.lsp.buf.references()")
     (map :gi "lua vim.lsp.buf.implementation()")
     (map :K "lua vim.lsp.buf.hover()")
-    (map :<c-k> "lua vim.lsp.buf.signature_help()")
+    ;  We use <c-k> to move to the window above.
+    ;(map :<c-k> "lua vim.lsp.buf.signature_help()")
+    (map :<leader>k "lua vim.lsp.buf.signature_help()")
     (map :<c-p> "lua vim.diagnostic.goto_prev()")
     (map :<c-n> "lua vim.diagnostic.goto_next()")
 

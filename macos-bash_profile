@@ -55,6 +55,9 @@ export PATH=$PATH:~/go/bin
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+# Enable man for XCode tools
+export MANPATH=$MANPATH:/Library/Developer/CommandLineTools/usr/share/man
+
 # For Clojure via Leiningen
 # Using brew clojure instead for clojure and clj.
 #alias clojure='java -jar ~/.lein/self-installs/leiningen-2.7.1-standalone.jar '
@@ -127,8 +130,9 @@ export -f show_virtual_env
 #export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 #export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 # 05/19/22: The new way used with archive file (.tar.gz).
-#export JAVA_HOME=/usr/local/Java/jdk8u332-b09/Contents/Home
-export JAVA_HOME=/usr/local/Java/jdk8u345-b01/Contents/Home
+export JAVA_HOME=/usr/local/Java/jdk8u362-b09/Contents/Home
+#export JAVA_HOME=/usr/local/Java/jdk-17.0.6+10/Contents/Home
+
 export PATH="$JAVA_HOME/bin:$PATH"
 
 #  To silence warnings about zsh not being the default login shell
@@ -136,7 +140,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # To clear scrollback of a kitty terminal emulator window.
 #   - https://github.com/kovidgoyal/kitty/issues/268
-alias clear_sb="printf '\E[H\E[3J'"
+alias cls="printf '\E[H\E[3J'"
 
 # For kitty terminal emulator to set the tab title to the tty number.
 tab_title() {
@@ -174,6 +178,11 @@ export PS1='\[\033]2;$(basename $(pwd))\007\033[0;36m\]\W \[\033[0;35m\]$(git_br
 #  Added for direnv & show_virtual_env()
 export PS1='$(show_virtual_env)'$PS1
 
+# PostgresQL
+export PATH=$PATH:/usr/local/opt/postgresql@15/bin
+
+# Poetry depency and package manager for Python
+export PATH=$PATH:/Users/russ/Projects/Poetry/bin
 
 ##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 ##export SDKMAN_DIR="/Users/russ/.sdkman"
