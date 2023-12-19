@@ -56,19 +56,22 @@ export PATH=$RACKET_HOME/bin:$PATH
 # If compiled NVIDIA encoder and decoder plugins are available
 export GST_PLUGIN_PATH=/usr/local/lib/gstreamer-1.0
 
+# 12/19/2023: Replaced with Mamba.
 # For Miniconda
 #   - Keep the "conda initialize" stuff at the end of this file to use
 #     the conda command.
-CONDA_HOME=$HOME/miniconda3
-export PATH=$CONDA_HOME/bin:$PATH
+#CONDA_HOME=$HOME/miniconda3
+#export PATH=$CONDA_HOME/bin:$PATH
 
 workon() {
-  ACT="$CONDA_HOME/envs/$1"
+  #ACT="$CONDA_HOME/envs/$1"
+  ACT="/home/russ/mambaforge/envs/$1"
   if [ "$1" != "" ] && [ -d "$ACT" ]; then
+    #conda activate "$1"
     conda activate "$1"
   else
     echo "Environments:"
-    /bin/ls "$CONDA_HOME/envs"
+    /bin/ls "/home/russ/mambaforge/envs"
   fi
 }
 
@@ -147,17 +150,21 @@ export PS1='\[\033]2;$(tty | sed 's?/dev/??')\007\033[0;36m\]\W \[\033[0;35m\]$(
 #  and not set the prompt with the environment.
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/russ/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/russ/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/russ/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/russ/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/russ/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/russ/mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="/home/russ/miniconda3/bin:$PATH"
+        export PATH="/home/russ/mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
+
+if [ -f "/home/russ/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/russ/mambaforge/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
 
 # 02/01/22: Manage Node versions and friends; instead of nodenv.
