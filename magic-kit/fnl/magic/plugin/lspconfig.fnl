@@ -23,7 +23,7 @@
                         :telemetry {:enable false}}}})
 
     ;; 2. Python
-    (lsp.jedi_language_server.setup {}) ;; for Python
+    ;(lsp.jedi_language_server.setup {}) ;; for Python
 
     ;; 3. Fennel
     ;;    a. Defaults from https://sr.ht/~xerool/fennel-ls/.
@@ -36,13 +36,13 @@
     ;   })
     ;;    b. Defaults from https://github.com/rydesun/fennel-language-server and
     ;;       Olical/dotfiles/stowed/.config/nvim/lua/user/plugins/mason.fnl.
-    (lsp.fennel_language_server.setup
-      {:filetypes [:fennel]
-       :root_dir (lsp.util.root_pattern :fnl :lua)
-       :single_file_support true
-       :settings {:fennel {:diagnostics {:globals [:vim :jit :comment]}
-                           :workspace {:library (vim.api.nvim_list_runtime_paths)}}}
-       })
+    ;(lsp.fennel_language_server.setup
+    ;  {:filetypes [:fennel]
+    ;   :root_dir (lsp.util.root_pattern :fnl :lua)
+    ;   :single_file_support true
+    ;   :settings {:fennel {:diagnostics {:globals [:vim :jit :comment]}
+    ;                       :workspace {:library (vim.api.nvim_list_runtime_paths)}}}
+    ;   })
 
     ;; 4. Clojure
     ;     (lsp.clojure_lsp.setup {})

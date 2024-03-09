@@ -6,6 +6,7 @@
 ;;; Color tweaks
 (defn setup []
 
+(nvim.ex.highlight "VertSplit NONE") ;; clearing it links it to Normal
 ;; :hi ColorColumn ctermbg=1 guibg=#bd93f9  "(light purple)
 ;;(nvim.ex.highlight "ColorColumn ctermbg=1 guibg=#bd93f9") ;; (light purple)
 

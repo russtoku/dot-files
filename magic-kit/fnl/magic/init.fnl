@@ -55,12 +55,14 @@
 ;; Run script/sync.sh to update, install and clean your plugins.
 ;; Packer configuration format: https://github.com/wbthomason/packer.nvim
 (plugin.use
-  :Olical/aniseed {}
-  ;  :Olical/conjure {:mod :conjure}
-  :/Users/russ/Projects/Conjure/russ-try/conjure {:mod :conjure}
-  :Olical/nfnl {}  ;; Neovim v0.9.0+
+  :Olical/aniseed {} ; needed for Conjure development
+  :Olical/conjure {:mod :conjure}
+  ;;:Olical/conjure {:branch :develop :mod :conjure}
+  ;;:/Users/russ/Projects/Conjure/russ-try/conjure {:mod :conjure}
+  ;;:Olical/nfnl {} ;; needs Neovim v0.9.0+
+  ;;:/Users/russ/Projects/Conjure/Tree-sitter/my-plugin {}
+  :jaawerth/fennel.vim {} ;; recommended by https://github.com/bakpakin/Fennel/wiki/Editors
   :clojure-vim/clojure.vim {}
-  :jaawerth/fennel-nvim {} ;; instead of :bakpakin/fennel.vim {}
   :guns/vim-sexp {:mod :sexp}
   :tpope/vim-sexp-mappings-for-regular-people {}
   :kylechui/nvim-surround {}  ;; instead of :tpope/vim-surround {}
@@ -72,6 +74,7 @@
   :nvim-treesitter/playground {:mod :playground}
   :terrortylor/nvim-comment {} ;; instead of :tpope/vim-commentary {}
   :nvim-tree/nvim-tree.lua {:mod :nvim-tree} ;; directory tree navigation
+  :axvr/org.vim {}
   :wbthomason/packer.nvim {}
   :andymass/vim-matchup {}
 
@@ -82,7 +85,7 @@
   :hrsh7th/nvim-cmp {:mod :cmp} ;; init file, plugin/cmp.fnl sets sources
   ;;  -- Start of nvim-cmp sources specified in plugin/cmp.fnl
   :PaterJason/cmp-conjure {}
-  :hrsh7th/cmp-nvim-lsp {}
+  ;;  :hrsh7th/cmp-nvim-lsp {}
   :hrsh7th/cmp-buffer {}
   :hrsh7th/cmp-path {} ;; for filesystem paths
   :hrsh7th/cmp-nvim-lua {}  ;; for Neovim's Lua API
@@ -95,7 +98,7 @@
   ;;  NOTE: plugin/telescope.fnl requires rg (ripgrep).
 
   ;; Hints when using mapped keys.
-  :folke/which-key.nvim {:mod :which-key}
+  ;;   :folke/which-key.nvim {:mod :which-key}
 
   ;; Color schemes
   ;;   Other schemes may be available in ../../colors.

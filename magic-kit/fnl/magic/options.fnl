@@ -1,4 +1,4 @@
-(module magic.mapping
+(module magic.options
   {require {core aniseed.core
             str aniseed.string
             util magic.util
@@ -95,6 +95,8 @@
          ;settings needed for compe autocompletion
          ;;? :completeopt "menuone,noselect"
          ;;? :signcolumn "number"
+         :grepprg "rg --vimgrep $*"
+         :grepformat "%f:%l:%c:%m"
          }]
     (each [option value (pairs options)]
       (util.set-global-option option value)))

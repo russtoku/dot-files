@@ -16,9 +16,10 @@ alias top='top -l 1 -n 20 -ncols 12'
 ##alias vi='mvim --remote-silent'
 ##alias vim='mvim --remote-silent'
 ##alias view='mvim -R --remote-silent'
-alias vi='echo use nvim'
-alias vim='echo use nvim'
-alias view='nvim -R'
+alias vi=myvim
+alias vim=myvim
+alias view='myvim -R'
+alias nvim='nv'
 
 # Add fnl and web file types to ripgrep.
 alias rg='RIPGREP_CONFIG_PATH=~/.ripgreprc rg'
@@ -57,6 +58,12 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Enable man for XCode tools
 export MANPATH=$MANPATH:/Library/Developer/CommandLineTools/usr/share/man
+# Enable man for XCode SDKs
+export MANPATH=$MANPATH:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man
+# Enable man for Brew commands
+export MANPATH=$MANPATH:/usr/local/share/man
+# Enable man for postgresql
+export MANPATH=$MANPATH:/usr/local/opt/postgresql\@15/share/man
 
 # For Clojure via Leiningen
 # Using brew clojure instead for clojure and clj.
@@ -80,24 +87,6 @@ ulimit -n 1000
 # For Racket
 RACKET_HOME=/Applications/Racket
 export PATH=$RACKET_HOME/bin:$PATH
-
-# For Miniconda
-#   - Keep the "conda initialize" stuff at the end of this file to use
-#     the conda command.
-CONDA_HOME=$HOME/miniconda3
-export PATH=~/bin:$CONDA_HOME/bin:$PATH
-
-workon() {
-  ACT="$CONDA_HOME/envs/$1"
-  if [ "$1" != "" ] && [ -d "$ACT" ]; then
-    conda activate "$1"
-  else
-    echo "Environments:"
-    /bin/ls "$CONDA_HOME/envs"
-  fi
-}
-
-alias workoff='conda deactivate'
 
 # For my stuff; put before conda to have my stuff take precedence
 export PATH=$HOME/bin:$PATH
@@ -181,8 +170,9 @@ export PS1='$(show_virtual_env)'$PS1
 # PostgresQL
 export PATH=$PATH:/usr/local/opt/postgresql@15/bin
 
-# Poetry depency and package manager for Python
-export PATH=$PATH:/Users/russ/Projects/Poetry/bin
+# cl-repl (Common Lisp via koji/kojiro/cl-repl and roswell pkg mgr)
+export PATH=$PATH:~/.roswell/bin
+
 
 ##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 ##export SDKMAN_DIR="/Users/russ/.sdkman"
@@ -193,24 +183,20 @@ export PATH=$PATH:/Users/russ/Projects/Poetry/bin
 #FZF_HOME=/Users/russ/.vim/pack/bundle/start/fzf
 #export PATH="$PATH:$FZF_HOME/bin"
 
-#  Set conda "config auto_activate_base false" so that the base environment is not
-#  activated when a shell starts up. This should speed-up bash shell initialization
-#  and not set the prompt with the environment.
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/russ/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/russ/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/russ/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/russ/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 # 02/01/22: Manage Node versions and friends; instead of nodenv.
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='/Users/russ/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/Users/russ/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<

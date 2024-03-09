@@ -20,7 +20,7 @@
   (map :<bs>            "noh"                    "Cancel search highlighting")
   (map :<LocalLeader>tp "TSPlaygroundToggle"     "Show/hide Tree-sitter playground")
   (map :<LocalLeader>tn "TSNodeUnderCursor"      "Show/hide Tree-sitter node under cursor")
-  (map :<Leader>t       "NvimTreeToggle<CR>"     "Show/hide file tree navigation")
+  (map :<C-n>           "NvimTreeToggle<CR>"     "Show/hide file tree navigation")
   (map :<Leader>o       "NvimTreeFindFile<CR>"   "Show buffer in file tree navigation")
   (map :<LocalLeader>bu "resize -5<CR>:wincmd k" "Make Conjure buffer smaller and move to window above")
 
