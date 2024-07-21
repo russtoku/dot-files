@@ -77,6 +77,7 @@
   :axvr/org.vim {}
   :wbthomason/packer.nvim {}
   :andymass/vim-matchup {}
+  :tpope/vim-fugitive {}
 
   ;; Completion
   ;; Is nvim-lspconfig required for nvim-cmp? language servers provide more than completions.

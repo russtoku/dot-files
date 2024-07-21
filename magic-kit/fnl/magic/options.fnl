@@ -97,6 +97,8 @@
          ;;? :signcolumn "number"
          :grepprg "rg --vimgrep $*"
          :grepformat "%f:%l:%c:%m"
+         ;; Always do a vertical split for diffs
+         :diffopt "internal,filler,closeoff,vertical"
          }]
     (each [option value (pairs options)]
       (util.set-global-option option value)))

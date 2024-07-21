@@ -24,6 +24,9 @@
   ;;  default: formatoptions=cqj (autowrap comments; format comments with gq;
   ;;  remove comment leader when joining lines)
   (nvim.ex.autocmd "FileType" "fennel" "setl noai tw=80 fdm=indent nofen fo+=n1")
+
+  ;; Markdown files: open all folds initially
+  (nvim.ex.autocmd "FileType" "markdown" "setl nofen fo+=n1")
   
   ;; Text files: *.txt
   ;;   autocmd BufNewFile,BufRead *.txt setlocal filetype=text
@@ -41,5 +44,9 @@
   ;; Vimscript files: treat ':' (58) as part of a word.
   (nvim.ex.autocmd "BufNewFile,BufRead" :*.vim "setlocal iskeyword=@,48-58,_,192-255,#")
 
+  ;; Python files:
+  ;;   Enable folding in python files;
+  (nvim.ex.autocmd "FileType" "python" "setl fdm=expr foldexpr=nvim_treesitter#foldexpr() nofen fo+=n1")
+  
   (nvim.ex.augroup :END)
 )
