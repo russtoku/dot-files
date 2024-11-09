@@ -21,6 +21,14 @@
                                      {:buffer bufnr})
                     (vim.keymap.set :n :<localleader>hl
                                     (fn [] (gitsigns.nav_hunk :last))
+                                     {:buffer bufnr})
+
+                    ;; Actions: blame, diff
+                    (vim.keymap.set :n :<localleader>hb
+                                    (fn [] (gitsigns.blame_line))
+                                     {:buffer bufnr})
+                    (vim.keymap.set :n :<localleader>hd
+                                    (fn [] (gitsigns.diffthis))
                                      {:buffer bufnr}))})
     ;;(print "gitsigns loaded")
     ))
