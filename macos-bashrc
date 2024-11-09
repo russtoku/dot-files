@@ -1,0 +1,31 @@
+# For interactive shells.
+#  To silence warnings about zsh not being the default login shell
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+alias ls='ls -F'
+#  Mac OSX: prevent Terminal window from losing focus
+alias java='java -Djava.awt.headless=true'
+alias top='top -l 1 -n 20 -ncols 12'
+# Add fnl and web file types to ripgrep.
+alias rg='RIPGREP_CONFIG_PATH=~/.ripgreprc rg'
+# ldd equivalent
+alias ldd='otool -L'
+alias cls="printf '\E[H\E[3J'"
+
+#  Used in bash prompt
+#  - https://danishpraka.sh/2018/07/06/git-branch-zsh.html
+git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" ]]; then
+        :
+    else
+        echo '('$branch')'
+    fi
+}
+
+# For kitty to also set the tab title to the current directory.
+export PS1='\[\033]2;$(basename $(pwd))\007\033[0;36m\]\W \[\033[0;35m\]$(git_branch)\[\033[00m\]$ '
+#  Added for direnv & show_virtual_env()
+export PS1='$(show_virtual_env)'$PS1
+
+#echo "Sourced ~/.bashrc $(date)"
